@@ -54,22 +54,44 @@ const quotes = [
     citation: '',
     year: '',
   },
-]
-
-
-
+];
 
 /***
  * `getRandomQuote` function
 ***/
 
+function getRandomQuote (){
+  let randomNumber = Math.floor(Math.random() * quotes.length);
+  return quotes[randomNumber];
+};
+
+/*** The function getRandomQuote we can use the length propertie along with
+Math.floor and it will return between 0 and the last item of the array.
+***/
 
 
 /***
  * `printQuote` function
 ***/
+function printQuote (){
+  let randomQuote = getRandomQuote (); // call the function above
 
+  let htmlQuote = // set the html for quote and source
+  `<p class="quote"> ${randomQuote.quote} </p>
+  <p class="source"> ${randomQuote.source}`;
 
+  if (randomQuote.citation !== ""){
+    htmlQuote += `<span class="citation"> ${randomQuote.citation} </span>`
+  };
+
+  if (randomQuote.year !== ""){
+    htmlQuote += `<span class="year"> ${randomQuote.year} </span>`
+  };
+  // if formulas to add the year and citation to HTML when applicable
+  htmlQuote += "</p>"
+
+  return document.getElementById('quote-box').innerHTML = htmlQuote;
+};
 
 /***
  * click event listener for the print quote button
